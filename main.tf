@@ -13,9 +13,8 @@ module "cluster" {
 }
 
 module "api" {
-  source                  = "./modules/api"
-  k8s_cluster_ca_cert     = module.cluster.egapay_cluster_kubeconfig_ca_cert
-  k8s_cluster_client_cert = module.cluster.egapay_cluster_kubeconfig_client_cert
-  k8s_cluster_client_key  = module.cluster.egapay_cluster_kubeconfig_client_key
-  k8s_cluster_host        = module.cluster.egapay_cluster_kubeconfig_host
+  source              = "./modules/api"
+  k8s_cluster_ca_cert = module.cluster.egapay_cluster_kubeconfig_ca_cert
+  k8s_cluster_token   = module.cluster.egapay_cluster_kubeconfig_token
+  k8s_cluster_host    = module.cluster.egapay_cluster_kubeconfig_host
 }
