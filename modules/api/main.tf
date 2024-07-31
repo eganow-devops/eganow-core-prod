@@ -9,13 +9,20 @@ terraform {
 
 provider "kubernetes" {
   host                   = var.k8s_cluster_host
-  client_certificate     = var.k8s_cluster_client_cert
-  client_key             = var.k8s_cluster_client_key
+  token                  = var.k8s_cluster_token
   cluster_ca_certificate = var.k8s_cluster_ca_cert
 }
 
 module "deployments" {
-  source = "./deployment"
+  source            = "./deployment"
+  project_namespace = module.namespace.eganow_core_namespace
+  providers = {
+    kubernetes = kubernetes
+  }
+}
+
+module "namespace" {
+  source = "./namespace"
   providers = {
     kubernetes = kubernetes
   }

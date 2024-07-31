@@ -8,12 +8,7 @@ variable "k8s_cluster_ca_cert" {
   type        = string
 }
 
-variable "k8s_cluster_client_key" {
-  description = "The client key of the Kubernetes cluster"
-  type        = string
-}
-
-variable "k8s_cluster_client_cert" {
-  description = "The client certificate of the Kubernetes cluster"
+variable "k8s_cluster_token" {
+  description = "The token of the Kubernetes cluster"
   type        = string
 }
