@@ -1,0 +1,6 @@
+.idea/
+.terraform/
+**/*.hcl
+**/*.tfstate.*
+
+**/*.auto.tfvars
