@@ -62,3 +62,15 @@ variable "cluster_maintenance_day" {
   default     = "sunday"
   type        = string
 }
+
+variable "egapay_inbound_source_address" {
+  type = set(string)
+  description = "The source addresses for the inbound rules for cluster"
+  default = ["0.0.0.0/0", "::/0"]
+}
+
+variable "egapay_outbound_source_address" {
+  type = set(string)
+  description = "The source addresses for the outbound rules for cluster"
+  default = ["0.0.0.0/0", "::/0"]
+}
