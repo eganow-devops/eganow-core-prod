@@ -12,7 +12,15 @@ terraform {
       source  = "alekc/kubectl"
       version = "~> 2.0.4"
     }
+    digitalocean = {
+      source  = "digitalocean/digitalocean"
+      version = "~> 2.39.2"
+    }
   }
+}
+
+provider "digitalocean" {
+  token = var.do_token
 }
 
 provider "kubernetes" {
@@ -36,30 +44,6 @@ provider "helm" {
   }
 }
 
-module "namespace" {
-  source = "./namespace"
-  providers = {
-    kubernetes = kubernetes
-  }
-}
-
-module "deployments" {
-  source            = "./deployment"
-  project_namespace = module.namespace.eganow_core_namespace
-  providers = {
-    kubernetes = kubernetes
-  }
-}
-
-module "secrets" {
-  source            = "./secret"
-  project_namespace = module.namespace.eganow_core_namespace
-  do_token          = var.do_token
-  providers = {
-    kubernetes = kubernetes
-  }
-}
-
 module "cert-manager" {
   source  = "terraform-iaac/cert-manager/kubernetes"
   version = "2.6.3"
@@ -73,8 +57,8 @@ module "cert-manager" {
       dns01 = {
         digitalocean = {
           tokenSecretRef = {
-            name = module.secrets.do_token_secret_name
-            key  = module.secrets.do_token_secret_string_data_key
+            name = kubernetes_secret_v1.digitalocean_dns_token.metadata.0.name
+            key  = "token"
           }
         }
       }
