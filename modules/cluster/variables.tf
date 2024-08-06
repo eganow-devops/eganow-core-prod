@@ -33,12 +33,6 @@ variable "cluster_egapay_node_pool_size" {
   type        = string
 }
 
-variable "cluster_node_count" {
-  description = "The number of nodes in the node pool"
-  default     = 3
-  type        = number
-}
-
 variable "cluster_node_autoscale_min_count" {
   description = "The minimum number of nodes in the node pool"
   default     = 1
@@ -63,14 +57,12 @@ variable "cluster_maintenance_day" {
   type        = string
 }
 
-variable "egapay_inbound_source_address" {
+variable "eganow_inbound_source_address" {
   type = set(string)
   description = "The source addresses for the inbound rules for cluster"
-  default = ["0.0.0.0/0", "::/0"]
 }
 
-variable "egapay_outbound_source_address" {
+variable "eganow_outbound_destination_address" {
   type = set(string)
   description = "The source addresses for the outbound rules for cluster"
-  default = ["0.0.0.0/0", "::/0"]
 }
