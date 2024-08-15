@@ -52,16 +52,6 @@ variable "dockerconfigjson" {
     }))
   })
   sensitive = true
-  default = {
-    auths = {
-      "dummy" = {
-        username = ""
-        password = ""
-        email    = ""
-        auth     = ""
-      }
-    }
-  }
 }
 
 variable "eganow_inbound_source_addresses" {

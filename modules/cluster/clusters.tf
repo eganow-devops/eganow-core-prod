@@ -19,5 +19,6 @@ resource "digitalocean_kubernetes_cluster" "egapay_cluster" {
     day        = var.cluster_maintenance_day
   }
 
+  destroy_all_associated_resources = true
   depends_on = [digitalocean_vpc.egapay_vpc]
 }
