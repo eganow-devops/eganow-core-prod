@@ -6,31 +6,37 @@ resource "digitalocean_firewall" "egapay_core_firewall" {
 
   inbound_rule {
     protocol         = "tcp"
-    port_range       = 22
+    port_range       = "22"
     source_addresses = var.eganow_inbound_source_address
   }
 
   inbound_rule {
     protocol         = "tcp"
-    port_range       = 443
+    port_range       = "80"
+    source_addresses = var.eganow_inbound_source_address
+  }
+
+  inbound_rule {
+    protocol         = "tcp"
+    port_range       = "443"
     source_addresses = var.eganow_inbound_source_address
   }
 
   outbound_rule {
     protocol              = "tcp"
-    port_range            = 443
+    port_range            = "443"
     destination_addresses = var.eganow_outbound_destination_address
   }
 
   outbound_rule {
     protocol              = "tcp"
-    port_range            = 25
+    port_range            = "25"
     destination_addresses = var.eganow_outbound_destination_address
   }
 
   outbound_rule {
     protocol              = "tcp"
-    port_range            = 587
+    port_range            = "587"
     destination_addresses = var.eganow_outbound_destination_address
   }
 }
