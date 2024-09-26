@@ -61,3 +61,10 @@ variable "eganow_inbound_source_addresses" {
 variable "eganow_outbound_destination_addresses" {
   type = list(string)
 }
+
+variable "redis_password" {
+  description = "Redis password"
+  type        = string
+  default     = "Password for Redis cluster"
+  sensitive = true
+}

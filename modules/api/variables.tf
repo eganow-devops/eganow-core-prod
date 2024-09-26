@@ -111,12 +111,6 @@ variable "dockerconfigjson" {
   sensitive = true
 }
 
-variable "ingress_tls_secret_name" {
-  description = "The name of the secret that contains the TLS certificate"
-  type        = string
-  default     = "http-ingress-tls"
-}
-
 variable "min_pod_replicas" {
   description = "The minimum number of replicas for the deployment"
   type        = number
@@ -139,4 +133,11 @@ variable "grpc_ingress_tls_secret_name" {
   description = "The name of the secret that contains the TLS certificate"
   type        = string
   default     = "grpc-ingress-tls"
+}
+
+variable "redis_password" {
+  description = "Redis password"
+  type        = string
+  default     = "Password for Redis cluster"
+  sensitive   = true
 }
