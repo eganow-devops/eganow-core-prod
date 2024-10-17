@@ -41,6 +41,12 @@ variable "onepassword_credentials_json" {
   })
 }
 
+variable "onepassword_token" {
+  description = "The token for vault connection"
+  type        = string
+  sensitive   = true
+}
+
 variable "dockerconfigjson" {
   description = "Docker config JSON needed to set up image pull credentials"
   type = object({
@@ -66,5 +72,5 @@ variable "redis_password" {
   description = "Redis password"
   type        = string
   default     = "Password for Redis cluster"
-  sensitive = true
+  sensitive   = true
 }
