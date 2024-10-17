@@ -12,17 +12,17 @@ resource "kubernetes_secret_v1" "digitalocean_dns_token" {
 # secret for 1password key vault
 resource "kubernetes_secret_v1" "onepassword_connect" {
   metadata {
-    name      = "onepassword-connect"
+    name      = "onepassword-connect-vault"
     namespace = var.pay_core_namespace
   }
 
   data = {
-    "1password-credentials.json" : jsonencode(var.onepassword_credentials_json)
+    token = var.onepassword_token
   }
 }
 
 #  secret for dockerconfigjson
-resource "kubernetes_secret_v1" "dockerconfigjson" {
+resource "kubernetes_secret_v1" "docker_regcred" {
   metadata {
     name      = "dockerconfigjson"
     namespace = var.pay_core_namespace
